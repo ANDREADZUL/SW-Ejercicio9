@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8"/>
+    <title>EJEMPLO</title>
+   
+
+</head>
+<body>
+  <h2>Ejemplos</h2>
+
+    <script>
+
+      
+      /* En este primer código lo que hace es mostrar los datos que estan declarados.
+        Al momento de presionar el botón esto ejecuta la funcion que hace.
+      */
+      function Ejemplo1(){
+    var miobjeto = {
+      nombre: "Juan",
+      edad: 30
+    };
+    var mensaje = "Mi nombre es " + miobjeto.nombre + "\r\n";
+    mensaje += "Tengo " + miobjeto["edad"] + " años";
+    alert(mensaje); 
+      }
+
+      /*Este codigo lo que hace es asignar un nombre y se muestra en el metodo mostrar dato
+      y en cambiar nombre y lo que ejecuta es que pone el nombre que se reemplazo
+      */
+
+      function Ejemplo2(){  
+        var miobjeto = {
+            nombre: "Juan",
+            edad: 30,
+            mostrardatos: function() {
+        var mensaje = "Nombre: " + miobjeto.nombre + "\r\n";
+            mensaje += "Edad: " + miobjeto.edad;
+            alert(mensaje);
+         },
+            cambiarnombre: function(nombrenuevo) {
+             miobjeto.nombre = nombrenuevo;
+             }
+          };
+          miobjeto.mostrardatos();  // "Nombre: Juan Edad: 30"
+          miobjeto.cambiarnombre("José");
+          miobjeto.mostrardatos();
+
+       }
+
+       /* En esta funcion es que regresa al nombre anterior con el metodo return, que devuelve el nombre,
+       es decir, al primer nombre que estaba declarado
+       */
+       function Ejemplo3(){
+        var miobjeto = {
+          nombre: "Juan",
+          edad: 30,
+          mostrardatos: function() {
+            var mensaje = "Nombre: " + miobjeto.nombre + "\r\n";
+            mensaje += "Edad: " + miobjeto.edad;
+            alert(mensaje);
+          },
+          cambiarnombre: function(nombrenuevo) {
+            var nombreviejo = miobjeto.nombre;
+            miobjeto.nombre = nombrenuevo;
+            return nombreviejo;
+        } }; 
+        var anterior = miobjeto.cambiarnombre("José");
+        alert("Nombre anterior: " +anterior)
+
+       }
+
+       /* Esta funcion regresa al nombre anterio pero haciendo el uso de la palabra THIS en
+          lugar del nombre del objeto para hacer referenciar el objeto
+       */
+       function Ejemplo4(){
+            var miobjeto = {
+            nombre: "Juan",
+            edad: 30,
+            mostrardatos: function() {
+              var mensaje = "Nombre: " + this.nombre + "\r\n";
+              mensaje += "Edad: " + this.edad;
+            },
+            cambiarnombre: function(nombrenuevo) {
+              var nombreviejo = this.nombre;
+              this.nombre = nombrenuevo;
+              return nombreviejo;
+            } }; 
+            var anterior = miobjeto.cambiarnombre("José");
+            alert("El nombre anterior era: " + anterior);
+
+       }
+
+       /* Esta funcion lo que hace es que copia las mismas propiedades y metodos y recorre toda la funcion e imprime el nombre Juan
+       con el metodo return, que devuelve el nombre pero con el metodo Constructor
+       */
+       function Ejemplo5(){
+        var constructor = function() {
+        var obj = {
+          nombre: "Juan",
+          edad: 30,
+          mostrarnombre: function() {
+            alert(this.nombre);
+          },
+          cambiarnombre: function(nombrenuevo) {
+            this.nombre = nombrenuevo;
+          }
+      }; 
+        return obj;
+      };
+      var empleado = constructor();
+      empleado.mostrarnombre()
+
+      }
+
+      /* Este codigo lo que hace se crea un constructor y dentro de la funcion se asigna los parametros 
+      */
+      function Ejemplo6(){
+        var constructor = function(nombreinicial) {
+          var obj = {
+            nombre: nombreinicial,
+            edad: 30,
+            mostrarnombre: function() {
+              alert(this.nombre);
+            },
+            cambiarnombre: function(nombrenuevo) {
+              this.nombre = nombrenuevo;
+            }
+        }; 
+          return obj;
+        };
+        var empleado = constructor("Juan");
+        empleado.mostrarnombre();
+
+      }
+
+      /* Lo que hace esta funcion es que imprime los 3 nombres declarados
+      */
+      function Ejemplo7(){
+        var constructor = function(nombreinicial) {
+            var obj = {
+              nombre: nombreinicial,
+              edad: 30,
+              mostrarnombre: function() {
+                alert(this.nombre);
+              },
+              cambiarnombre: function(nombrenuevo) {
+                this.nombre = nombrenuevo;
+          } }; 
+            return obj;
+          };
+          var empleado1 = constructor("Juan");
+          var empleado2 = constructor("Roberto");
+          var empleado3 = constructor("Arturo");
+          alert(empleado1.nombre + ", " + empleado2.nombre + ", " +
+          empleado3.nombre)
+      }
+
+      /* Lo que hace esta funcion es que solo imprime el nombre asignado, invocando al metodo constructor
+      */
+      function Ejemplo8(){
+        var constructor = function() {
+          var nombre = "Juan";
+          var edad = 30;
+          var obj = {
+            mostrarnombre: function() {
+                alert(nombre);
+            },
+            cambiarnombre: function(nombrenuevo) {
+              nombre = nombrenuevo;
+        } }; 
+          return obj;
+        };
+        var empleado = constructor();
+        empleado.mostrarnombre();
+
+      }
+
+      /* Lo que hace este código es que ell objeto se define mediante una función y luego se llama con el operador new
+      y muestra el nombre que esta dentro de la funcion MiObjeto 
+      */
+      function Ejemplo9(){
+        function MiObjeto() {
+          this.nombre = "Juan";
+          this.edad = 30;
+          this.mostrarnombre = function(){
+            alert(this.nombre);
+          };
+          this.cambiarnombre = function(nombrenuevo){
+          this.nombre = nombrenuevo;
+           };
+          }
+          var empleado = new MiObjeto();
+          empleado.mostrarnombre();
+
+      }
+
+      /* lo que hace esta funcion es que solo imprime solo el nombre
+      */
+      function Ejemplo10(){
+        function MiObjeto(nombreinicial, edadinicial){
+          this.nombre = nombreinicial;
+          this.edad = edadinicial;
+          this.mostrarnombre = function(){
+            alert(this.nombre);
+          };
+          this.cambiarnombre = function(nombrenuevo){
+            this.nombre = nombrenuevo;
+          };
+        }
+        var empleado = new MiObjeto("Roberto", 55);
+        empleado.mostrarnombre();
+      }
+
+
+         
+
+    </script>
+    <p><input type="submit" value="ejemplo1" onclick="Ejemplo1()"></p>
+    <p><input type="submit" value="ejemplo2" onclick="Ejemplo2()"></p>
+    <p><input type="submit" value="ejemplo3" onclick="Ejemplo3()"></p>
+    <p><input type="submit" value="ejemplo4" onclick="Ejemplo4()"></p>
+    <p><input type="submit" value="ejemplo5" onclick="Ejemplo5()"></p>
+    <p><input type="submit" value="ejemplo6" onclick="Ejemplo6()"></p>
+    <p><input type="submit" value="ejemplo7" onclick="Ejemplo7()"></p>
+    <p><input type="submit" value="ejemplo8" onclick="Ejemplo8()"></p>
+    <p><input type="submit" value="ejemplo9" onclick="Ejemplo9()"></p>
+    <p><input type="submit" value="ejemplo10" onclick="Ejemplo10()"></p>
+
+</body>
+</html>
